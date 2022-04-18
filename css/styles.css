@@ -1,0 +1,79 @@
+.cover {
+  object-fit: cover;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.block {
+  display: block;
+}
+
+.logo {
+  font-family: Righteous, sans-serif;
+  color: white;
+}
+
+.green {
+  background-color: #1c2c0f;
+}
+
+.dark-grey {
+  background-color: #cccaca;
+}
+
+.full-width {
+  width: 100vw;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+h1 {
+  margin-left: 25px;
+}
+
+h2 {
+  font-family: Spectral, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.search-box {
+  height: 36px;
+  width: 255px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  padding-left: 0.8rem;
+}
+
+.search-button {
+  background-color: #1c2c0f;
+  color: white;
+  border: 1px solid #1c2c0f;
+  border-radius: 4px;
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+}

@@ -8,12 +8,34 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Rubik&family=Spectral&display=swap"
+    rel="stylesheet">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="green">
+    <header>
+      <div class="row">
+        <div class="column-full green">
+          <h1 class="logo">CheckMate</h1>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div class="dark-grey">
+    <main class="container dark-grey full-height">
+      <div class="row ">
+        <div class="column-full flex justify-center">
+          <h2>Find a Player</h2>
+        </div>
+        <div class="column-full flex justify-center">
+          <input type="text" name="search" id="search" placeholder="Chess.com Username" class="search-box" required>
+          <button type="submit" class="search-button">Search</button>
+        </div>
+      </div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
