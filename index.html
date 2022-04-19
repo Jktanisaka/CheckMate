@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Rubik&family=Spectral&display=swap"
     rel="stylesheet">
 </head>
+
 <body>
   <div class="green">
     <header>
@@ -25,7 +27,7 @@
   </div>
   <div class="dark-grey">
     <main class="container dark-grey full-height">
-      <div class="row ">
+      <div class="row hidden" data-view="search">
         <div class="column-full flex justify-center">
           <h2>Find a Player</h2>
         </div>
@@ -34,9 +36,59 @@
           <button type="submit" class="search-button">Search</button>
         </div>
       </div>
+      <div class="row justify-center">
+        <div class="column-full profile">
+          <div class="row profile-styling">
+            <div class="column-full flex justify-center">
+              <h3 class="h3-name">Hikaru Nakamura</h3>
+            </div>
+            <div class="column-half flex justify-center image-container">
+              <img src="images/placeholder-image-square.jpg" class="expand">
+            </div>
+            <div class="column-half flex flex-column">
+              <h3 class="h3-name-desktop">Hikaru Nakamura</h3>
+              <p class="block font16"><b>Location:</b></p>
+              <p class="block font14">Sunrise, Florida</p>
+              <p class="block font16"><b>Last Online:</b></p>
+              <p class="block font14">Sat Apr 16 2022</p>
+            </div>
+          </div>
+          <div class="row justify-center">
+            <div class="info-box-styling">
+              <h4>Rapid</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b>2927</b></p>
+                  <p class="font14">Current Rating: <b>2927</b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b>2927</b></p>
+                  <p class="font14">Losses: <b>2927</b></p>
+                  <p class="font14">Draws: <b>2927</b></p>
+                </div>
+              </div>
+            </div>
+            <div class="info-box-styling">
+              <h4>Blitz</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b>2927</b></p>
+                  <p class="font14">Current Rating: <b>2927</b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b>2927</b></p>
+                  <p class="font14">Losses: <b>2927</b></p>
+                  <p class="font14">Draws: <b>2927</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
