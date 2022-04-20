@@ -19,7 +19,6 @@ var viewList = document.querySelectorAll('.data-view');
 var addButton = document.querySelector('#add-button');
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
-var newEntry = {};
 
 function playerSearch(event) {
   event.preventDefault();
@@ -28,6 +27,7 @@ function playerSearch(event) {
 }
 
 function getChessData(name) {
+  var newEntry = {};
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.chess.com/pub/player/' + name);
   xhr.responseType = 'json';
@@ -82,6 +82,7 @@ function getChessData(name) {
     newEntry.id = data.nextEntryId;
   });
   hr.send();
+  return newEntry;
 }
 
 function viewSwap(view) {
@@ -95,7 +96,6 @@ function viewSwap(view) {
 }
 
 function addEntry(event) {
-  data.entries.push(newEntry);
-  newEntry = {};
+  data.entries.push(getChessData(searchBox.value));
   data.nextEntryId++;
 }
