@@ -16,8 +16,9 @@ var blitzDraws = document.querySelector('#blitz-draws');
 var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
-
+var addButton = document.querySelector('#add-button');
 formSearch.addEventListener('submit', playerSearch);
+addButton.addEventListener('click', addEntry);
 var newEntry = {};
 
 function playerSearch(event) {
@@ -78,6 +79,7 @@ function getChessData(name) {
     blitzWins.textContent = newEntry.blitzWins;
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
+    newEntry.id = data.nextEntryId;
   });
   hr.send();
 }
@@ -90,4 +92,10 @@ function viewSwap(view) {
       viewList[i].className = 'row justify-center data-view';
     }
   }
+}
+
+function addEntry(event) {
+  data.entries.push(newEntry);
+  newEntry = {};
+  data.nextEntryId++;
 }

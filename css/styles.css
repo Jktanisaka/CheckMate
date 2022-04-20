@@ -177,6 +177,18 @@ h4 {
   line-height: 22px;
 }
 
+.add-button {
+  width: 20rem;
+  height: 36px;
+  background-color: #1c2c0f;
+  color: white;
+  border: 1px solid #1c2c0f;
+  border-radius: 4px;
+  font-family: Rubik, sans-serif;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
 @media screen and (max-width: 768px) {
   .h3-desktop {
     display: none;
@@ -221,5 +233,9 @@ h4 {
 
   .info-stretch-styling {
     flex-basis: 65%;
+  }
+
+  .add-button {
+    width: 41.3rem;
   }
 }
