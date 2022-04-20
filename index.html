@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,86 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Rubik&family=Spectral&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="green">
+    <header>
+      <div class="row">
+        <div class="column-full green">
+          <h1 class="logo">CheckMate</h1>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div class="dark-grey">
+    <main class="container dark-grey full-height">
+      <div class="row justify-center data-view" data-view="search">
+        <div class="column-full flex justify-center">
+          <h2>Find a Player</h2>
+        </div>
+        <form class="column-full flex justify-center">
+          <input type="text" name="search" id="search" placeholder="Chess.com Username" class="search-box" required>
+          <button type="submit" class="search-button" id="search-button">Search</button>
+        </form>
+      </div>
+      <div class="row justify-center hidden data-view" data-view="profile">
+        <div class="column-full profile ">
+          <div class="row profile-styling">
+            <div class="column-full flex justify-center">
+              <h3 class="h3-mobile" id="mobileH3"></h3>
+            </div>
+            <div class="column-half flex justify-center image-container">
+              <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
+            </div>
+            <div class="column-half flex flex-column info-stretch-styling">
+              <h3 class="h3-desktop" id="desktopH3"></h3>
+              <p class="block font16"><b>Location:</b></p>
+              <p class="block font14" id="location"></p>
+              <p class="block font16"><b>Last Online:</b></p>
+              <p class="block font14" id="online"></p>
+            </div>
+          </div>
+          <div class="row justify-center profile-bottom-margin">
+            <div class="info-box-styling">
+              <h4>Rapid</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="rapid-best"></b></p>
+                  <p class="font14">Current Rating: <b id="rapid-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="rapid-wins"></b></p>
+                  <p class="font14">Losses: <b id="rapid-losses"></b></p>
+                  <p class="font14">Draws: <b id="rapid-draws"></b></p>
+                </div>
+              </div>
+            </div>
+            <div class="info-box-styling">
+              <h4>Blitz</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="blitz-best"></b></p>
+                  <p class="font14">Current Rating: <b id="blitz-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="blitz-wins"></b></p>
+                  <p class="font14">Losses: <b id="blitz-losses"></b></p>
+                  <p class="font14">Draws: <b id="blitz-draws"></b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
