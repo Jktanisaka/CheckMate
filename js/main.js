@@ -16,9 +16,9 @@ var blitzDraws = document.querySelector('#blitz-draws');
 var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
-
+var addButton = document.querySelector('#add-button');
 formSearch.addEventListener('submit', playerSearch);
-var newEntry = {};
+addButton.addEventListener('click', addEntry);
 
 function playerSearch(event) {
   event.preventDefault();
@@ -27,6 +27,7 @@ function playerSearch(event) {
 }
 
 function getChessData(name) {
+  var newEntry = {};
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.chess.com/pub/player/' + name);
   xhr.responseType = 'json';
@@ -78,8 +79,10 @@ function getChessData(name) {
     blitzWins.textContent = newEntry.blitzWins;
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
+    newEntry.id = data.nextEntryId;
   });
   hr.send();
+  return newEntry;
 }
 
 function viewSwap(view) {
@@ -90,4 +93,9 @@ function viewSwap(view) {
       viewList[i].className = 'row justify-center data-view';
     }
   }
+}
+
+function addEntry(event) {
+  data.entries.push(getChessData(searchBox.value));
+  data.nextEntryId++;
 }
