@@ -2,18 +2,6 @@
   object-fit: cover;
 }
 
-.column-half {
-  flex-basis: 50%;
-}
-
-.column-full {
-  flex-basis: 100%;
-}
-
-.column-60 {
-  flex-basis: 60%;
-}
-
 .text-right {
   text-align: right;
 }
@@ -203,6 +191,27 @@ h4 {
   border-radius: 4px;
   border: 1px solid #1c2c0f;
   margin-right: 0.8rem;
+}
+
+.add-button-list-view {
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  color: #1c2c0f;
+  background-color: white;
+  height: 35px;
+  width: 80px;
+  border-radius: 4px;
+  border: 1px solid #1c2c0f;
+  margin-right: 7rem;
+}
+
+.players-view {
+  margin-top: 2rem;
+  max-width: 700px;
+}
+
+.players-h2 {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 768px) {

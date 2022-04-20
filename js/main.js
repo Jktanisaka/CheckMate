@@ -17,8 +17,10 @@ var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
 var addButton = document.querySelector('#add-button');
+// var viewListButton = document.querySelector('#view-list-button')
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
+// viewListButton.addEventListener('click', listButtonPress)
 
 function playerSearch(event) {
   event.preventDefault();
@@ -99,3 +101,78 @@ function addEntry(event) {
   data.entries.push(getChessData(searchBox.value));
   data.nextEntryId++;
 }
+
+/*
+function createListEntry(object) {
+  var makeLi = document.createElement('Li');
+  var mainDiv = document.createElement('Div');
+  mainDiv.setAttribute('class', 'column-full profile');
+
+  var profileDiv = document.createElement('Div');
+  profileDiv.setAttribute('class', 'row profile-styling');
+  var mobileDiv = document.createElement('Div');
+  mobileDiv.setAttribute('class', 'column-full flex justify-center');
+  var mobileH3 = document.createElement('h3');
+  mobileH3.setAttribute('class', 'h3-mobile');
+  mobileH3.textContent = object.name;
+  profileDiv.appendChild(mobileDiv);
+  mobileDiv.appendChild(mobileH3);
+  var imageDiv = document.createElement()
+}
+
+/*
+<div class="column-full profile ">
+          <div class="row profile-styling">
+            <div class="column-full flex justify-center">
+              <h3 class="h3-mobile" id="mobileH3"></h3>
+            </div>
+            <div class="column-half flex justify-center image-container">
+              <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
+            </div>
+            <div class="column-half flex flex-column info-stretch-styling">
+              <h3 class="h3-desktop" id="desktopH3"></h3>
+              <p class="block font16"><b>Location:</b></p>
+              <p class="block font14" id="location"></p>
+              <p class="block font16"><b>Last Online:</b></p>
+              <p class="block font14" id="online"></p>
+            </div>
+          </div>
+          <div class="row justify-center profile-bottom-margin">
+            <div class="info-box-styling">
+              <h4>Rapid</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="rapid-best"></b></p>
+                  <p class="font14">Current Rating: <b id="rapid-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="rapid-wins"></b></p>
+                  <p class="font14">Losses: <b id="rapid-losses"></b></p>
+                  <p class="font14">Draws: <b id="rapid-draws"></b></p>
+                </div>
+              </div>
+            </div>
+            <div class="info-box-styling">
+              <h4>Blitz</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="blitz-best"></b></p>
+                  <p class="font14">Current Rating: <b id="blitz-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="blitz-wins"></b></p>
+                  <p class="font14">Losses: <b id="blitz-losses"></b></p>
+                  <p class="font14">Draws: <b id="blitz-draws"></b></p>
+                </div>
+              </div>
+            </div>
+            <div class="column-full flex justify-center">
+              <button type="button" class="add-button" id="add-button">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+function listButtonPress(event) {
+}
+*/

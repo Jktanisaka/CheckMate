@@ -13,6 +13,22 @@
   flex-wrap: wrap;
 }
 
+.column-30 {
+  flex-basis: 30%;
+}
+
+.column-full {
+  flex-basis: 100%;
+}
+
+.column-60 {
+  flex-basis: 60%;
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
 .column-full,
 .column-half {
   width: 100%;

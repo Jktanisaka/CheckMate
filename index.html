@@ -28,7 +28,7 @@
   </div>
   <div class="dark-grey">
     <main class="container dark-grey full-height">
-      <div class="row justify-center data-view" data-view="search">
+      <div class="row justify-center hidden data-view" data-view="search">
         <div class="column-full flex justify-center">
           <h2>Find a Player</h2>
         </div>
@@ -89,10 +89,14 @@
           </div>
         </div>
       </div>
-      <div class="row justify-center">
-        <div class="column-full">
-          <h2>Players</h2>
-          <button>Add</button>
+      <div class="row justify-center view" data-view="list">
+        <div class="column-full flex justify-between align-center players-view">
+          <h2 class="players-h2">Players</h2>
+          <div class="row">
+            <div class="column-30">
+              <button type="button" class="add-button-list-view">Add</button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
