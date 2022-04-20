@@ -27,7 +27,7 @@
   </div>
   <div class="dark-grey">
     <main class="container dark-grey full-height">
-      <div class="row " data-view="search">
+      <div class="row justify-center data-view" data-view="search">
         <div class="column-full flex justify-center">
           <h2>Find a Player</h2>
         </div>
@@ -36,24 +36,24 @@
           <button type="submit" class="search-button" id="search-button">Search</button>
         </form>
       </div>
-      <div class="row justify-center">
-        <div class="column-full profile">
+      <div class="row justify-center hidden data-view" data-view="profile">
+        <div class="column-full profile ">
           <div class="row profile-styling">
             <div class="column-full flex justify-center">
-              <h3 class="h3-name" id="mobileH3"></h3>
+              <h3 class="h3-mobile" id="mobileH3"></h3>
             </div>
             <div class="column-half flex justify-center image-container">
               <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
             </div>
-            <div class="column-half flex flex-column">
-              <h3 class="h3-name-desktop" id="desktopH3"></h3>
+            <div class="column-half flex flex-column info-stretch-styling">
+              <h3 class="h3-desktop" id="desktopH3"></h3>
               <p class="block font16"><b>Location:</b></p>
               <p class="block font14" id="location"></p>
               <p class="block font16"><b>Last Online:</b></p>
               <p class="block font14" id="online"></p>
             </div>
           </div>
-          <div class="row justify-center">
+          <div class="row justify-center profile-bottom-margin">
             <div class="info-box-styling">
               <h4>Rapid</h4>
               <div class="row">

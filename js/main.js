@@ -1,8 +1,3 @@
-var form = document.querySelector('form');
-var searchBox = document.querySelector('#search');
-form.addEventListener('submit', playerSearch);
-var newEntry = {};
-
 var profilePic = document.querySelector('#profile-pic');
 var mobileH3 = document.querySelector('#mobileH3');
 var desktopH3 = document.querySelector('#desktopH3');
@@ -18,30 +13,17 @@ var blitzCurrent = document.querySelector('#blitz-current');
 var blitzWins = document.querySelector('#blitz-wins');
 var blitzLosses = document.querySelector('#blitz-losses');
 var blitzDraws = document.querySelector('#blitz-draws');
+var formSearch = document.querySelector('form');
+var searchBox = document.querySelector('#search');
+var viewList = document.querySelectorAll('.data-view');
+
+formSearch.addEventListener('submit', playerSearch);
+var newEntry = {};
 
 function playerSearch(event) {
   event.preventDefault();
   getChessData(searchBox.value);
-
-  setTimeout(setData(), 0);
-}
-function setData() {
-  mobileH3.textContent = newEntry.name;
-  desktopH3.textContent = newEntry.name;
-  locationEntry.textContent = newEntry.location;
-  onlineEntry.textContent = newEntry.lastOnline;
-  rapidBest.textContent = newEntry.bestRapid;
-  rapidCurrent.textContent = newEntry.currentRapid;
-  rapidWins.textContent = newEntry.rapidWins;
-  rapidLosses.textContent = newEntry.rapidLosses;
-  rapidDraws.textContent = newEntry.rapidDraws;
-  blitzBest.textContent = newEntry.bestBlitz;
-  blitzCurrent.textContent = newEntry.currentBlitz;
-  blitzWins.textContent = newEntry.blitzWins;
-  blitzLosses.textContent = newEntry.blitzLosses;
-  blitzDraws.textContent = newEntry.blitzDraws;
-  profilePic.setAttribute('src', newEntry.img);
-
+  viewSwap('profile');
 }
 
 function getChessData(name) {
@@ -65,6 +47,11 @@ function getChessData(name) {
       newEntry.location = xhr.response.location;
     }
     newEntry.lastOnline = new Date(xhr.response.last_online * 1000);
+    mobileH3.textContent = newEntry.name;
+    desktopH3.textContent = newEntry.name;
+    locationEntry.textContent = newEntry.location;
+    onlineEntry.textContent = newEntry.lastOnline;
+    profilePic.setAttribute('src', newEntry.img);
   });
   xhr.send();
   var hr = new XMLHttpRequest();
@@ -81,6 +68,26 @@ function getChessData(name) {
     newEntry.rapidWins = hr.response.chess_rapid.record.win;
     newEntry.rapidLosses = hr.response.chess_rapid.record.loss;
     newEntry.rapidDraws = hr.response.chess_rapid.record.draw;
+    rapidBest.textContent = newEntry.bestRapid;
+    rapidCurrent.textContent = newEntry.currentRapid;
+    rapidWins.textContent = newEntry.rapidWins;
+    rapidLosses.textContent = newEntry.rapidLosses;
+    rapidDraws.textContent = newEntry.rapidDraws;
+    blitzBest.textContent = newEntry.bestBlitz;
+    blitzCurrent.textContent = newEntry.currentBlitz;
+    blitzWins.textContent = newEntry.blitzWins;
+    blitzLosses.textContent = newEntry.blitzLosses;
+    blitzDraws.textContent = newEntry.blitzDraws;
   });
   hr.send();
+}
+
+function viewSwap(view) {
+  for (var i = 0; i < viewList.length; i++) {
+    if (viewList[i].getAttribute('data-view') !== view) {
+      viewList[i].className = 'row justify-center hidden data-view';
+    } else {
+      viewList[i].className = 'row justify-center data-view';
+    }
+  }
 }
