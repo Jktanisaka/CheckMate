@@ -115,18 +115,157 @@ function createListEntry(object) {
   var mobileH3 = document.createElement('h3');
   mobileH3.setAttribute('class', 'h3-mobile');
   mobileH3.textContent = object.name;
-  profileDiv.appendChild(mobileDiv);
   mobileDiv.appendChild(mobileH3);
-  var imageDiv = document.createElement()
+
+  var imageDiv = document.createElement('div');
+  imageDiv.setAttribute('class', 'column-half flex justify-center image-container');
+  var profileImg = document.createElement('img');
+  profileImg.setAttribute('src', object.img);
+  profileImg.setAttribute('class', 'expand');
+  imageDiv.appendChild(profileImg);
+
+  var infoDiv = document.createElement('div');
+  infoDiv.setAttribute('class', 'column-half flex flex-column info-stretch-styling');
+  var desktopH3 = document.createElement('h3');
+  desktopH3.setAttribute('class', 'h3-desktop');
+  desktopH3.textContent = object.name;
+  var locationP = document.createElement('p');
+  locationP.setAttribute('class', 'block font16');
+  var locationB = document.createElement('b');
+  locationB.textContent = 'Location:';
+  var locationPText = document.createElement('p');
+  locationPText.setAttribute('class', 'block font14');
+  locationPText.textContent = object.location;
+  var onlineP = document.createElement('p');
+  onlineP.setAttribute('class', 'block font16');
+  var onlineB = document.createElement('b');
+  onlineB.textContent = 'Last Online:';
+  var onlinePText = document.createElement('p');
+  onlinePText.setAttribute('class', 'block font14');
+  onlinePText.textContent = object.lastOnline;
+  onlineP.appendChild(onlineB);
+  locationP.appendChild(locationB);
+  infoDiv.append(desktopH3, locationP, locationPText, onlineP, onlinePText);
+
+  var bodyDiv = document.createElement('div');
+  bodyDiv.setAttribute('class', 'row justify-center profile-bottom-margin');
+
+  var rapidDiv = document.createElement('div');
+  rapidDiv.setAttribute('class', 'info-box-styling');
+  var rapidH4 = document.createElement('h4');
+  rapidH4.textContent = 'Rapid';
+  var rapidFirstDiv = document.createElement('div');
+  rapidFirstDiv.setAttribute('class', 'row');
+  var rapidRatingDiv = document.createElement('div');
+  rapidRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
+  rapidFirstDiv.appendChild(rapidRatingDiv);
+
+  var ratingP = document.createElement('p');
+  ratingP.setAttribute('class', 'font14');
+  ratingP.textContent = 'Best Rating: ';
+  var ratingB = document.createElement('b');
+  ratingB.textContent = object.bestRapid;
+  ratingP.appendChild(ratingB);
+  rapidRatingDiv.appendChild(ratingP);
+
+  var currentRatingP = document.createElement('p');
+  currentRatingP.setAttribute('class', 'font14');
+  currentRatingP.textContent = 'Current Rating: ';
+  var currentRatingB = document.createElement('b');
+  currentRatingB.textContent = object.currentRapid;
+  currentRatingP.appendChild(currentRatingB);
+  rapidRatingDiv.appendChild(currentRatingP);
+  rapidDiv.append(rapidH4, rapidRatingDiv);
+
+  var rapidSecondDiv = document.createElement('div');
+  rapidSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var winsP = document.createElement('p');
+  winsP.setAttribute('class', 'font14');
+  winsP.textContent = 'Wins: ';
+  var winsB = document.createElement('b');
+  winsB.textContent = object.rapidWins;
+  winsP.appendChild(winsB);
+
+  var lossesP = document.createElement('p');
+  lossesP.setAttribute('class', 'font14');
+  lossesP.textContent = 'Losses: ';
+  var lossesB = document.createElement('b');
+  lossesB.textContent = object.rapidLosses;
+  lossesP.appendChild(lossesB);
+
+  var drawsP = document.createElement('p');
+  drawsP.setAttribute('class', 'font14');
+  drawsP.textContent = 'Draws: ';
+  var drawsB = document.createElement('b');
+  drawsB.textContent = object.rapidDraws;
+  drawsP.appendChild(drawsB);
+
+  var blitzDiv = document.createElement('div');
+  blitzDiv.setAttribute('class', 'info-box-styling');
+  var blitzH4 = document.createElement('h4');
+  blitzH4.textContent = 'Blitz';
+  var blitzFirstDiv = document.createElement('div');
+  blitzFirstDiv.setAttribute('class', 'row');
+  var blitzRatingDiv = document.createElement('div');
+  blitzRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
+  blitzFirstDiv.appendChild(blitzRatingDiv);
+
+  var bestRatingP = document.createElement('p');
+  bestRatingP.setAttribute('class', 'font14');
+  bestRatingP.textContent = 'Best Rating: ';
+  var bestRatingB = document.createElement('b');
+  bestRatingB.textContent = object.bestRapid;
+  bestRatingP.appendChild(bestRatingB);
+  blitzRatingDiv.appendChild(bestRatingP);
+
+  var currentBlitzRatingP = document.createElement('p');
+  currentBlitzRatingP.setAttribute('class', 'font14');
+  currentBlitzRatingP.textContent = 'Current Rating: ';
+  var currentBlitzRatingB = document.createElement('b');
+  currentBlitzRatingB.textContent = object.currentBlitz;
+  currentBlitzRatingP.appendChild(currentBlitzRatingB);
+  blitzRatingDiv.appendChild(currentBlitzRatingP);
+  blitzDiv.append(blitzH4, blitzRatingDiv);
+
+  var blitzSecondDiv = document.createElement('div');
+  blitzSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var blitzWinsP = document.createElement('p');
+  blitzWinsP.setAttribute('class', 'font14');
+  blitzWinsP.textContent = 'Wins: ';
+  var blitzWinsB = document.createElement('b');
+  blitzWinsB.textContent = object.blitzWins;
+  blitzWinsP.appendChild(blitzWinsB);
+
+  var blitzLossesP = document.createElement('p');
+  blitzLossesP.setAttribute('class', 'font14');
+  blitzLossesP.textContent = 'Losses: ';
+  var blitzLossesB = document.createElement('b');
+  blitzLossesB.textContent = object.blitzLosses;
+  blitzLossesP.appendChild(blitzLossesB);
+
+  var blitzDrawsP = document.createElement('p');
+  blitzDrawsP.setAttribute('class', 'font14');
+  blitzDrawsP.textContent = 'Draws: ';
+  var blitzDrawsB = document.createElement('b');
+  blitzDrawsB.textContent = object.blitzDraws;
+  blitzDrawsP.appendChild(blitzDrawsB);
+  blitzSecondDiv.append(blitzWinsP, blitzLossesP, blitzDrawsP);
+
+  rapidSecondDiv.append(winsP, lossesP, drawsP);
+  bodyDiv.append(rapidDiv, rapidSecondDiv, blitzDiv, blitzSecondDiv);
+  mainDiv.append(profileDiv, bodyDiv);
+  profileDiv.append(mobileDiv, imageDiv, infoDiv);
 }
 
 /*
-<div class="column-full profile ">
-          <div class="row profile-styling">
-            <div class="column-full flex justify-center">
+mainDiv <div class="column-full profile ">
+ProfileDi<div class="row profile-styling">
+mobilediv  <div class="column-full flex justify-center">
               <h3 class="h3-mobile" id="mobileH3"></h3>
             </div>
-            <div class="column-half flex justify-center image-container">
+imagediv    <div class="column-half flex justify-center image-container">
               <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
             </div>
             <div class="column-half flex flex-column info-stretch-styling">
