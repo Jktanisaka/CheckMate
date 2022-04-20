@@ -30,6 +30,10 @@
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .flex {
   display: flex;
 }
@@ -187,6 +191,18 @@ h4 {
   font-family: Rubik, sans-serif;
   margin-top: 0.4rem;
   margin-bottom: 0.8rem;
+}
+
+.view-list-button {
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  color: #1c2c0f;
+  background-color: white;
+  height: 39px;
+  width: 113px;
+  border-radius: 4px;
+  border: 1px solid #1c2c0f;
+  margin-right: 0.8rem;
 }
 
 @media screen and (max-width: 768px) {
