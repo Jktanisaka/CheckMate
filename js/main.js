@@ -17,6 +17,7 @@ var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
 var addButton = document.querySelector('#add-button');
+// var playerList = document.querySelector('ul');
 // var viewListButton = document.querySelector('#view-list-button')
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
@@ -101,10 +102,11 @@ function addEntry(event) {
   data.entries.push(getChessData(searchBox.value));
   data.nextEntryId++;
 }
-
 /*
 function createListEntry(object) {
-  var makeLi = document.createElement('Li');
+  var newLi = document.createElement('Li');
+  var containerDiv = document.createElement('div');
+  containerDiv.setAttribute('class', 'row justify-center');
   var mainDiv = document.createElement('Div');
   mainDiv.setAttribute('class', 'column-full profile');
 
@@ -154,11 +156,12 @@ function createListEntry(object) {
   rapidDiv.setAttribute('class', 'info-box-styling');
   var rapidH4 = document.createElement('h4');
   rapidH4.textContent = 'Rapid';
+
   var rapidFirstDiv = document.createElement('div');
   rapidFirstDiv.setAttribute('class', 'row');
+
   var rapidRatingDiv = document.createElement('div');
   rapidRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
-  rapidFirstDiv.appendChild(rapidRatingDiv);
 
   var ratingP = document.createElement('p');
   ratingP.setAttribute('class', 'font14');
@@ -166,7 +169,6 @@ function createListEntry(object) {
   var ratingB = document.createElement('b');
   ratingB.textContent = object.bestRapid;
   ratingP.appendChild(ratingB);
-  rapidRatingDiv.appendChild(ratingP);
 
   var currentRatingP = document.createElement('p');
   currentRatingP.setAttribute('class', 'font14');
@@ -174,8 +176,7 @@ function createListEntry(object) {
   var currentRatingB = document.createElement('b');
   currentRatingB.textContent = object.currentRapid;
   currentRatingP.appendChild(currentRatingB);
-  rapidRatingDiv.appendChild(currentRatingP);
-  rapidDiv.append(rapidH4, rapidRatingDiv);
+  rapidRatingDiv.append(ratingP, currentRatingP);
 
   var rapidSecondDiv = document.createElement('div');
   rapidSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
@@ -200,6 +201,7 @@ function createListEntry(object) {
   var drawsB = document.createElement('b');
   drawsB.textContent = object.rapidDraws;
   drawsP.appendChild(drawsB);
+  rapidSecondDiv.append(winsP, lossesP, drawsP);
 
   var blitzDiv = document.createElement('div');
   blitzDiv.setAttribute('class', 'info-box-styling');
@@ -209,15 +211,13 @@ function createListEntry(object) {
   blitzFirstDiv.setAttribute('class', 'row');
   var blitzRatingDiv = document.createElement('div');
   blitzRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
-  blitzFirstDiv.appendChild(blitzRatingDiv);
 
   var bestRatingP = document.createElement('p');
   bestRatingP.setAttribute('class', 'font14');
   bestRatingP.textContent = 'Best Rating: ';
   var bestRatingB = document.createElement('b');
-  bestRatingB.textContent = object.bestRapid;
+  bestRatingB.textContent = object.bestBlitz;
   bestRatingP.appendChild(bestRatingB);
-  blitzRatingDiv.appendChild(bestRatingP);
 
   var currentBlitzRatingP = document.createElement('p');
   currentBlitzRatingP.setAttribute('class', 'font14');
@@ -225,8 +225,7 @@ function createListEntry(object) {
   var currentBlitzRatingB = document.createElement('b');
   currentBlitzRatingB.textContent = object.currentBlitz;
   currentBlitzRatingP.appendChild(currentBlitzRatingB);
-  blitzRatingDiv.appendChild(currentBlitzRatingP);
-  blitzDiv.append(blitzH4, blitzRatingDiv);
+  blitzRatingDiv.append(bestRatingP, currentBlitzRatingP);
 
   var blitzSecondDiv = document.createElement('div');
   blitzSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
@@ -251,12 +250,26 @@ function createListEntry(object) {
   var blitzDrawsB = document.createElement('b');
   blitzDrawsB.textContent = object.blitzDraws;
   blitzDrawsP.appendChild(blitzDrawsB);
+
   blitzSecondDiv.append(blitzWinsP, blitzLossesP, blitzDrawsP);
 
-  rapidSecondDiv.append(winsP, lossesP, drawsP);
-  bodyDiv.append(rapidDiv, rapidSecondDiv, blitzDiv, blitzSecondDiv);
+  bodyDiv.append(rapidDiv, blitzDiv);
+  rapidDiv.append(rapidH4, rapidFirstDiv);
+  blitzDiv.append(blitzH4, blitzFirstDiv);
+  rapidFirstDiv.append(rapidRatingDiv, rapidSecondDiv);
+  blitzFirstDiv.append(blitzRatingDiv, blitzSecondDiv);
+
   mainDiv.append(profileDiv, bodyDiv);
   profileDiv.append(mobileDiv, imageDiv, infoDiv);
+  containerDiv.append(mainDiv);
+  newLi.append(containerDiv);
+  return newLi;
+}
+/*
+function makeList(objects) {
+  for (var i = 0; i < objects.length; i++) {
+    playerList.append(createListEntry(objects[i]));
+  }
 }
 
 /*
