@@ -112,7 +112,6 @@ function getChessData(name) {
   hr.send();
   data.searchedEntry = newEntry;
   return newEntry;
-
 }
 
 function viewSwap(view) {
