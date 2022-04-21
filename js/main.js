@@ -17,15 +17,38 @@ var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
 var addButton = document.querySelector('#add-button');
-// var playerList = document.querySelector('ul');
-// var viewListButton = document.querySelector('#view-list-button')
+var playerList = document.querySelector('ul');
+var viewListButton = document.querySelector('#view-list-button');
+var addButtonListView = document.querySelector('#add-button-list-view');
+var noPlayers = document.querySelector('#no-players');
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
-// viewListButton.addEventListener('click', listButtonPress)
+addButtonListView.addEventListener('click', addButtonListViewClick);
+viewListButton.addEventListener('click', viewSwapList);
+
+window.addEventListener('DOMContentLoaded', onPageLoad);
+
+function onPageLoad(event) {
+  makeList(data.entries);
+  if (data.entries.length > 0) {
+    noPlayers.className = 'hidden';
+  } else {
+    noPlayers.className = 'column-full no-players-styling';
+  }
+}
+
+function viewSwapList(event) {
+  viewSwap('list');
+}
+
+function addButtonListViewClick(event) {
+  viewSwap('search');
+}
 
 function playerSearch(event) {
   event.preventDefault();
   getChessData(searchBox.value);
+  searchBox.value = '';
   viewSwap('profile');
 }
 
@@ -50,11 +73,12 @@ function getChessData(name) {
     } else {
       newEntry.location = xhr.response.location;
     }
-    newEntry.lastOnline = new Date(xhr.response.last_online * 1000);
+    var newDate = new Date(xhr.response.last_online * 1000);
+    newEntry.lastTimeOnline = newDate.toString();
     mobileH3.textContent = newEntry.name;
     desktopH3.textContent = newEntry.name;
     locationEntry.textContent = newEntry.location;
-    onlineEntry.textContent = newEntry.lastOnline;
+    onlineEntry.textContent = newEntry.lastTimeOnline;
     profilePic.setAttribute('src', newEntry.img);
   });
   xhr.send();
@@ -83,9 +107,12 @@ function getChessData(name) {
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
     newEntry.id = data.nextEntryId;
+
   });
   hr.send();
+  data.searchedEntry = newEntry;
   return newEntry;
+
 }
 
 function viewSwap(view) {
@@ -99,20 +126,25 @@ function viewSwap(view) {
 }
 
 function addEntry(event) {
-  data.entries.push(getChessData(searchBox.value));
+  data.entries.unshift(data.searchedEntry);
   data.nextEntryId++;
+  playerList.prepend(createListEntry(data.searchedEntry));
+  viewSwap('list');
+  noPlayers.className = 'hidden';
 }
-/*
+
 function createListEntry(object) {
   var newLi = document.createElement('Li');
+  newLi.setAttribute('data-entry-id', object.id);
+  newLi.setAttribute('class', 'row');
   var containerDiv = document.createElement('div');
-  containerDiv.setAttribute('class', 'row justify-center');
-  var mainDiv = document.createElement('Div');
+  containerDiv.setAttribute('class', 'row justify-center min-width');
+  var mainDiv = document.createElement('div');
   mainDiv.setAttribute('class', 'column-full profile');
 
-  var profileDiv = document.createElement('Div');
+  var profileDiv = document.createElement('div');
   profileDiv.setAttribute('class', 'row profile-styling');
-  var mobileDiv = document.createElement('Div');
+  var mobileDiv = document.createElement('div');
   mobileDiv.setAttribute('class', 'column-full flex justify-center');
   var mobileH3 = document.createElement('h3');
   mobileH3.setAttribute('class', 'h3-mobile');
@@ -144,7 +176,7 @@ function createListEntry(object) {
   onlineB.textContent = 'Last Online:';
   var onlinePText = document.createElement('p');
   onlinePText.setAttribute('class', 'block font14');
-  onlinePText.textContent = object.lastOnline;
+  onlinePText.textContent = object.lastTimeOnline;
   onlineP.appendChild(onlineB);
   locationP.appendChild(locationB);
   infoDiv.append(desktopH3, locationP, locationPText, onlineP, onlinePText);
@@ -265,7 +297,7 @@ function createListEntry(object) {
   newLi.append(containerDiv);
   return newLi;
 }
-/*
+
 function makeList(objects) {
   for (var i = 0; i < objects.length; i++) {
     playerList.append(createListEntry(objects[i]));

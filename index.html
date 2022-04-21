@@ -19,16 +19,16 @@
   <div class="green">
     <header>
       <div class="row">
-        <div class="column-full green flex justify-between align-center">
+        <div class="column-full green flex justify-between align-center ">
           <h1 class="logo">CheckMate</h1>
           <button type="button" class="view-list-button" id="view-list-button">View List</button>
         </div>
       </div>
     </header>
   </div>
-  <div class="dark-grey">
+  <div class="dark-grey full">
     <main class="container dark-grey full-height">
-      <div class="row justify-center hidden data-view" data-view="search">
+      <div class="row justify-center data-view" data-view="search">
         <div class="column-full flex justify-center">
           <h2>Find a Player</h2>
         </div>
@@ -37,7 +37,7 @@
           <button type="submit" class="search-button" id="search-button">Search</button>
         </form>
       </div>
-      <div class="row justify-center data-view " data-view="profile">
+      <div class="row justify-center data-view hidden " data-view="profile">
         <div class="column-full profile ">
           <div class="row profile-styling">
             <div class="column-full flex justify-center">
@@ -89,16 +89,19 @@
           </div>
         </div>
       </div>
-      <div class="row justify-center view" data-view="list">
+      <div class="row justify-center data-view hidden" data-view="list">
         <div class="column-full flex justify-between align-center players-view">
           <h2 class="players-h2">Players</h2>
           <div class="row">
             <div class="column-30">
-              <button type="button" class="add-button-list-view">Add</button>
+              <button type="button" class="add-button-list-view" id="add-button-list-view">Add</button>
             </div>
           </div>
         </div>
-        <ul class="row justify-center flex-column" id="list">
+        <div class="column-full no-players-styling" id="no-players">
+          <p><b>No Players Added</b></p>
+        </div>
+        <ul id="list">
 
         </ul>
       </div>
