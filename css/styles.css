@@ -216,7 +216,19 @@ h4 {
   width: 80px;
   border-radius: 4px;
   border: 1px solid #1c2c0f;
-  margin-right: 7rem;
+  margin-right: 1rem;
+}
+
+.sort-styling {
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  color: #6c757d;
+  background-color: white;
+  height: 35px;
+  width: 80px;
+  border-radius: 4px;
+  border: 1px solid #757373;
+  margin-right: 1rem;
 }
 
 .players-view {
