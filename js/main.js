@@ -17,12 +17,38 @@ var formSearch = document.querySelector('form');
 var searchBox = document.querySelector('#search');
 var viewList = document.querySelectorAll('.data-view');
 var addButton = document.querySelector('#add-button');
+var playerList = document.querySelector('ul');
+var viewListButton = document.querySelector('#view-list-button');
+var addButtonListView = document.querySelector('#add-button-list-view');
+var noPlayers = document.querySelector('#no-players');
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
+addButtonListView.addEventListener('click', addButtonListViewClick);
+viewListButton.addEventListener('click', viewSwapList);
+
+window.addEventListener('DOMContentLoaded', onPageLoad);
+
+function onPageLoad(event) {
+  makeList(data.entries);
+  if (data.entries.length > 0) {
+    noPlayers.className = 'hidden';
+  } else {
+    noPlayers.className = 'column-full no-players-styling';
+  }
+}
+
+function viewSwapList(event) {
+  viewSwap('list');
+}
+
+function addButtonListViewClick(event) {
+  viewSwap('search');
+}
 
 function playerSearch(event) {
   event.preventDefault();
   getChessData(searchBox.value);
+  searchBox.value = '';
   viewSwap('profile');
 }
 
@@ -47,11 +73,12 @@ function getChessData(name) {
     } else {
       newEntry.location = xhr.response.location;
     }
-    newEntry.lastOnline = new Date(xhr.response.last_online * 1000);
+    var newDate = new Date(xhr.response.last_online * 1000);
+    newEntry.lastTimeOnline = newDate.toString();
     mobileH3.textContent = newEntry.name;
     desktopH3.textContent = newEntry.name;
     locationEntry.textContent = newEntry.location;
-    onlineEntry.textContent = newEntry.lastOnline;
+    onlineEntry.textContent = newEntry.lastTimeOnline;
     profilePic.setAttribute('src', newEntry.img);
   });
   xhr.send();
@@ -80,9 +107,12 @@ function getChessData(name) {
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
     newEntry.id = data.nextEntryId;
+
   });
   hr.send();
+  data.searchedEntry = newEntry;
   return newEntry;
+
 }
 
 function viewSwap(view) {
@@ -96,6 +126,237 @@ function viewSwap(view) {
 }
 
 function addEntry(event) {
-  data.entries.push(getChessData(searchBox.value));
+  data.entries.unshift(data.searchedEntry);
   data.nextEntryId++;
+  playerList.prepend(createListEntry(data.searchedEntry));
+  viewSwap('list');
+  noPlayers.className = 'hidden';
 }
+
+function createListEntry(object) {
+  var newLi = document.createElement('Li');
+  newLi.setAttribute('data-entry-id', object.id);
+  newLi.setAttribute('class', 'row');
+  var containerDiv = document.createElement('div');
+  containerDiv.setAttribute('class', 'row justify-center min-width');
+  var mainDiv = document.createElement('div');
+  mainDiv.setAttribute('class', 'column-full profile');
+
+  var profileDiv = document.createElement('div');
+  profileDiv.setAttribute('class', 'row profile-styling');
+  var mobileDiv = document.createElement('div');
+  mobileDiv.setAttribute('class', 'column-full flex justify-center');
+  var mobileH3 = document.createElement('h3');
+  mobileH3.setAttribute('class', 'h3-mobile');
+  mobileH3.textContent = object.name;
+  mobileDiv.appendChild(mobileH3);
+
+  var imageDiv = document.createElement('div');
+  imageDiv.setAttribute('class', 'column-half flex justify-center image-container');
+  var profileImg = document.createElement('img');
+  profileImg.setAttribute('src', object.img);
+  profileImg.setAttribute('class', 'expand');
+  imageDiv.appendChild(profileImg);
+
+  var infoDiv = document.createElement('div');
+  infoDiv.setAttribute('class', 'column-half flex flex-column info-stretch-styling');
+  var desktopH3 = document.createElement('h3');
+  desktopH3.setAttribute('class', 'h3-desktop');
+  desktopH3.textContent = object.name;
+  var locationP = document.createElement('p');
+  locationP.setAttribute('class', 'block font16');
+  var locationB = document.createElement('b');
+  locationB.textContent = 'Location:';
+  var locationPText = document.createElement('p');
+  locationPText.setAttribute('class', 'block font14');
+  locationPText.textContent = object.location;
+  var onlineP = document.createElement('p');
+  onlineP.setAttribute('class', 'block font16');
+  var onlineB = document.createElement('b');
+  onlineB.textContent = 'Last Online:';
+  var onlinePText = document.createElement('p');
+  onlinePText.setAttribute('class', 'block font14');
+  onlinePText.textContent = object.lastTimeOnline;
+  onlineP.appendChild(onlineB);
+  locationP.appendChild(locationB);
+  infoDiv.append(desktopH3, locationP, locationPText, onlineP, onlinePText);
+
+  var bodyDiv = document.createElement('div');
+  bodyDiv.setAttribute('class', 'row justify-center profile-bottom-margin');
+
+  var rapidDiv = document.createElement('div');
+  rapidDiv.setAttribute('class', 'info-box-styling');
+  var rapidH4 = document.createElement('h4');
+  rapidH4.textContent = 'Rapid';
+
+  var rapidFirstDiv = document.createElement('div');
+  rapidFirstDiv.setAttribute('class', 'row');
+
+  var rapidRatingDiv = document.createElement('div');
+  rapidRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var ratingP = document.createElement('p');
+  ratingP.setAttribute('class', 'font14');
+  ratingP.textContent = 'Best Rating: ';
+  var ratingB = document.createElement('b');
+  ratingB.textContent = object.bestRapid;
+  ratingP.appendChild(ratingB);
+
+  var currentRatingP = document.createElement('p');
+  currentRatingP.setAttribute('class', 'font14');
+  currentRatingP.textContent = 'Current Rating: ';
+  var currentRatingB = document.createElement('b');
+  currentRatingB.textContent = object.currentRapid;
+  currentRatingP.appendChild(currentRatingB);
+  rapidRatingDiv.append(ratingP, currentRatingP);
+
+  var rapidSecondDiv = document.createElement('div');
+  rapidSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var winsP = document.createElement('p');
+  winsP.setAttribute('class', 'font14');
+  winsP.textContent = 'Wins: ';
+  var winsB = document.createElement('b');
+  winsB.textContent = object.rapidWins;
+  winsP.appendChild(winsB);
+
+  var lossesP = document.createElement('p');
+  lossesP.setAttribute('class', 'font14');
+  lossesP.textContent = 'Losses: ';
+  var lossesB = document.createElement('b');
+  lossesB.textContent = object.rapidLosses;
+  lossesP.appendChild(lossesB);
+
+  var drawsP = document.createElement('p');
+  drawsP.setAttribute('class', 'font14');
+  drawsP.textContent = 'Draws: ';
+  var drawsB = document.createElement('b');
+  drawsB.textContent = object.rapidDraws;
+  drawsP.appendChild(drawsB);
+  rapidSecondDiv.append(winsP, lossesP, drawsP);
+
+  var blitzDiv = document.createElement('div');
+  blitzDiv.setAttribute('class', 'info-box-styling');
+  var blitzH4 = document.createElement('h4');
+  blitzH4.textContent = 'Blitz';
+  var blitzFirstDiv = document.createElement('div');
+  blitzFirstDiv.setAttribute('class', 'row');
+  var blitzRatingDiv = document.createElement('div');
+  blitzRatingDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var bestRatingP = document.createElement('p');
+  bestRatingP.setAttribute('class', 'font14');
+  bestRatingP.textContent = 'Best Rating: ';
+  var bestRatingB = document.createElement('b');
+  bestRatingB.textContent = object.bestBlitz;
+  bestRatingP.appendChild(bestRatingB);
+
+  var currentBlitzRatingP = document.createElement('p');
+  currentBlitzRatingP.setAttribute('class', 'font14');
+  currentBlitzRatingP.textContent = 'Current Rating: ';
+  var currentBlitzRatingB = document.createElement('b');
+  currentBlitzRatingB.textContent = object.currentBlitz;
+  currentBlitzRatingP.appendChild(currentBlitzRatingB);
+  blitzRatingDiv.append(bestRatingP, currentBlitzRatingP);
+
+  var blitzSecondDiv = document.createElement('div');
+  blitzSecondDiv.setAttribute('class', 'column-half flex flex-column line-22');
+
+  var blitzWinsP = document.createElement('p');
+  blitzWinsP.setAttribute('class', 'font14');
+  blitzWinsP.textContent = 'Wins: ';
+  var blitzWinsB = document.createElement('b');
+  blitzWinsB.textContent = object.blitzWins;
+  blitzWinsP.appendChild(blitzWinsB);
+
+  var blitzLossesP = document.createElement('p');
+  blitzLossesP.setAttribute('class', 'font14');
+  blitzLossesP.textContent = 'Losses: ';
+  var blitzLossesB = document.createElement('b');
+  blitzLossesB.textContent = object.blitzLosses;
+  blitzLossesP.appendChild(blitzLossesB);
+
+  var blitzDrawsP = document.createElement('p');
+  blitzDrawsP.setAttribute('class', 'font14');
+  blitzDrawsP.textContent = 'Draws: ';
+  var blitzDrawsB = document.createElement('b');
+  blitzDrawsB.textContent = object.blitzDraws;
+  blitzDrawsP.appendChild(blitzDrawsB);
+
+  blitzSecondDiv.append(blitzWinsP, blitzLossesP, blitzDrawsP);
+
+  bodyDiv.append(rapidDiv, blitzDiv);
+  rapidDiv.append(rapidH4, rapidFirstDiv);
+  blitzDiv.append(blitzH4, blitzFirstDiv);
+  rapidFirstDiv.append(rapidRatingDiv, rapidSecondDiv);
+  blitzFirstDiv.append(blitzRatingDiv, blitzSecondDiv);
+
+  mainDiv.append(profileDiv, bodyDiv);
+  profileDiv.append(mobileDiv, imageDiv, infoDiv);
+  containerDiv.append(mainDiv);
+  newLi.append(containerDiv);
+  return newLi;
+}
+
+function makeList(objects) {
+  for (var i = 0; i < objects.length; i++) {
+    playerList.append(createListEntry(objects[i]));
+  }
+}
+
+/*
+mainDiv <div class="column-full profile ">
+ProfileDi<div class="row profile-styling">
+mobilediv  <div class="column-full flex justify-center">
+              <h3 class="h3-mobile" id="mobileH3"></h3>
+            </div>
+imagediv    <div class="column-half flex justify-center image-container">
+              <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
+            </div>
+            <div class="column-half flex flex-column info-stretch-styling">
+              <h3 class="h3-desktop" id="desktopH3"></h3>
+              <p class="block font16"><b>Location:</b></p>
+              <p class="block font14" id="location"></p>
+              <p class="block font16"><b>Last Online:</b></p>
+              <p class="block font14" id="online"></p>
+            </div>
+          </div>
+          <div class="row justify-center profile-bottom-margin">
+            <div class="info-box-styling">
+              <h4>Rapid</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="rapid-best"></b></p>
+                  <p class="font14">Current Rating: <b id="rapid-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="rapid-wins"></b></p>
+                  <p class="font14">Losses: <b id="rapid-losses"></b></p>
+                  <p class="font14">Draws: <b id="rapid-draws"></b></p>
+                </div>
+              </div>
+            </div>
+            <div class="info-box-styling">
+              <h4>Blitz</h4>
+              <div class="row">
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Best Rating: <b id="blitz-best"></b></p>
+                  <p class="font14">Current Rating: <b id="blitz-current"></b></p>
+                </div>
+                <div class="column-half flex flex-column line-22">
+                  <p class="font14">Wins: <b id="blitz-wins"></b></p>
+                  <p class="font14">Losses: <b id="blitz-losses"></b></p>
+                  <p class="font14">Draws: <b id="blitz-draws"></b></p>
+                </div>
+              </div>
+            </div>
+            <div class="column-full flex justify-center">
+              <button type="button" class="add-button" id="add-button">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+function listButtonPress(event) {
+}
+*/
