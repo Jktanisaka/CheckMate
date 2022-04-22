@@ -155,6 +155,28 @@ function viewSwap(view) {
   }
 }
 
+function makeList(objects) {
+  for (var i = 0; i < objects.length; i++) {
+    playerList.append(createListEntry(objects[i]));
+  }
+}
+
+function sortList(event) {
+  data.sortedBlitz = _.orderBy(data.entries, ['currentBlitz'], ['desc']);
+  data.sortedRapid = _.orderBy(data.entries, ['currentRapid'], ['desc']);
+  if (event.target.value === 'rapid') {
+    while (playerList.firstChild) {
+      playerList.removeChild(playerList.firstChild);
+    }
+    makeList(data.sortedRapid);
+  } else if (event.target.value === 'blitz') {
+    while (playerList.firstChild) {
+      playerList.removeChild(playerList.firstChild);
+    }
+    makeList(data.sortedBlitz);
+  }
+}
+
 function addEntry(event) {
   data.entries.unshift(data.searchedEntry);
   data.nextEntryId++;
@@ -328,26 +350,4 @@ function createListEntry(object) {
   containerDiv.append(mainDiv);
   newLi.append(containerDiv);
   return newLi;
-}
-
-function makeList(objects) {
-  for (var i = 0; i < objects.length; i++) {
-    playerList.append(createListEntry(objects[i]));
-  }
-}
-
-function sortList(event) {
-  data.sortedBlitz = _.orderBy(data.entries, ['currentBlitz'], ['desc']);
-  data.sortedRapid = _.orderBy(data.entries, ['currentRapid'], ['desc']);
-  if (event.target.value === 'rapid') {
-    while (playerList.firstChild) {
-      playerList.removeChild(playerList.firstChild);
-    }
-    makeList(data.sortedRapid);
-  } else if (event.target.value === 'blitz') {
-    while (playerList.firstChild) {
-      playerList.removeChild(playerList.firstChild);
-    }
-    makeList(data.sortedBlitz);
-  }
 }

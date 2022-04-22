@@ -1,6 +1,27 @@
-.cover {
-  object-fit: cover;
+/* header */
+
+.green {
+  background-color: #1c2c0f;
 }
+
+.logo {
+  font-family: Righteous, sans-serif;
+  color: white;
+}
+
+.view-list-button {
+  font-family: Rubik, sans-serif;
+  font-size: 1rem;
+  color: #1c2c0f;
+  background-color: white;
+  height: 39px;
+  width: 113px;
+  border-radius: 4px;
+  border: 1px solid #1c2c0f;
+  margin-right: 0.8rem;
+}
+
+/* utility */
 
 .text-right {
   text-align: right;
@@ -12,21 +33,6 @@
 
 .align-center {
   align-items: center;
-}
-
-ul {
-  padding: 0;
-  flex-basis: 100%;
-  margin-top: 0;
-}
-
-.search-margin {
-  margin-top: 2rem;
-}
-
-li {
-  list-style-type: none;
-  margin: 0;
 }
 
 .justify-center {
@@ -41,6 +47,10 @@ li {
   display: flex;
 }
 
+.relative {
+  position: relative;
+}
+
 .flex-column {
   flex-direction: column;
 }
@@ -53,13 +63,37 @@ li {
   display: block;
 }
 
-.logo {
-  font-family: Righteous, sans-serif;
-  color: white;
+.font14 {
+  font-size: 0.875rem;
 }
 
-.green {
-  background-color: #1c2c0f;
+.font16 {
+  font-size: 1rem;
+}
+
+.font18 {
+  font-size: 1.125rem;
+}
+
+.line-22 {
+  line-height: 1.375rem;
+}
+
+/* main */
+
+ul {
+  padding: 0;
+  flex-basis: 100%;
+  margin-top: 0;
+}
+
+.search-margin {
+  margin-top: 2rem;
+}
+
+li {
+  list-style-type: none;
+  margin: 0;
 }
 
 .dark-grey {
@@ -83,29 +117,9 @@ p {
   margin: 0;
 }
 
-.no-players-styling {
-  display: flex;
-  justify-content: center;
-  font-family: Rubik, sans-serif;
-  font-size: 16px;
-  margin-top: 1rem;
-}
-
-.font14 {
-  font-size: 14px;
-}
-
-.font16 {
-  font-size: 16px;
-}
-
-.font18 {
-  font-size: 18px;
-}
-
 h1 {
-  margin-left: 25px;
-  font-size: 38px;
+  margin-left: 1.563;
+  font-size: 2.375rem;
   font-weight: 400;
   letter-spacing: 0.1px;
 }
@@ -113,22 +127,52 @@ h1 {
 h2 {
   font-family: Spectral, sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 2.25rem;
   margin: 0;
 }
 
 h3 {
   font-family: Rubik, sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-family: Rubik, sans-serif;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+h5 {
+  font-family: Rubik, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 0 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+img {
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 4px;
+  margin-left: 1.2rem;
+}
+
+.no-players-styling {
+  display: flex;
+  justify-content: center;
+  font-family: Rubik, sans-serif;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
 .search-box {
-  height: 36px;
-  width: 255px;
+  height: 2.25rem;
+  width: 15.938rem;
   border: 1px solid black;
   border-radius: 4px;
   font-family: Rubik, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   padding-left: 0.8rem;
 }
 
@@ -138,15 +182,8 @@ h3 {
   border: 1px solid #1c2c0f;
   border-radius: 4px;
   font-family: Rubik, sans-serif;
-  font-size: 16px;
-  width: 70px;
-}
-
-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 4px;
-  margin-left: 1.2rem;
+  font-size: 1rem;
+  width: 4.375rem;
 }
 
 .profile {
@@ -177,19 +214,9 @@ img {
   margin-top: 10px;
 }
 
-h4 {
-  font-family: Rubik, sans-serif;
-  font-size: 24px;
-  margin: 0;
-}
-
-.line-22 {
-  line-height: 22px;
-}
-
 .add-button {
   width: 20rem;
-  height: 36px;
+  height: 2.25rem;
   background-color: #1c2c0f;
   color: white;
   border: 1px solid #1c2c0f;
@@ -199,21 +226,9 @@ h4 {
   margin-bottom: 0.8rem;
 }
 
-.view-list-button {
-  font-family: Rubik, sans-serif;
-  font-size: 16px;
-  color: #1c2c0f;
-  background-color: white;
-  height: 39px;
-  width: 113px;
-  border-radius: 4px;
-  border: 1px solid #1c2c0f;
-  margin-right: 0.8rem;
-}
-
 .add-button-list-view {
   font-family: Rubik, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: #1c2c0f;
   background-color: white;
   height: 35px;
@@ -225,7 +240,7 @@ h4 {
 
 .sort-styling {
   font-family: Rubik, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: #6c757d;
   background-color: white;
   height: 35px;
@@ -236,7 +251,7 @@ h4 {
 
 .players-view {
   margin-top: 1.5rem;
-  max-width: 700px;
+  max-width: 43.75rem;
 }
 
 .min-width {
@@ -247,15 +262,11 @@ h4 {
   margin-top: 0;
 }
 
-h5 {
-  font-family: Rubik, sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  padding: 0 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
+.find-a-player-h2 {
+  margin-top: 1rem;
 }
 
+/* Delete */
 .overlay {
   position: fixed;
   top: 0;
@@ -305,14 +316,10 @@ h5 {
 
 .delete-button {
   color: #fe0e0e;
-  font-size: 30px;
+  font-size: 1.875rem;
   position: absolute;
   top: 0.7rem;
   right: 1rem;
-}
-
-.relative {
-  position: relative;
 }
 
 @media screen and (max-width: 768px) {
