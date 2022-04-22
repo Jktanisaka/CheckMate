@@ -206,7 +206,7 @@ function createListEntry(object) {
   mobileDiv.append(mobileH3, deleteI);
 
   var imageDiv = document.createElement('div');
-  imageDiv.setAttribute('class', 'column-half flex justify-center image-container');
+  imageDiv.setAttribute('class', 'column-half flex justify-right image-container');
   var profileImg = document.createElement('img');
   profileImg.setAttribute('src', object.img);
   profileImg.setAttribute('class', 'expand');

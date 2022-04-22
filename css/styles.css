@@ -35,6 +35,10 @@
   align-items: center;
 }
 
+.justify-right {
+  justify-content: flex-end;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -157,10 +161,10 @@ h5 {
 }
 
 img {
-  width: 6.25rem;
+  width: 70;
   height: 6.25rem;
   border-radius: 4px;
-  margin-left: 1.2rem;
+  object-fit: cover;
 }
 
 .no-players-styling {
@@ -217,6 +221,14 @@ img {
 
 .h3-mobile {
   margin-top: 10px;
+}
+
+.info-stretch-styling {
+  padding-right: 1rem;
+}
+
+.image-container {
+  padding-right: 2rem;
 }
 
 .add-button {
