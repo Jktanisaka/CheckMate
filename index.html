@@ -13,6 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Rubik&family=Spectral&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
 </head>
 
 <body>
@@ -40,8 +43,9 @@
       <div class="row justify-center data-view hidden " data-view="profile">
         <div class="column-full profile ">
           <div class="row profile-styling">
-            <div class="column-full flex justify-center">
+            <div class="column-full flex justify-center relative">
               <h3 class="h3-mobile" id="mobileH3"></h3>
+              <i class="fas fa-window-close delete-button"></i>
             </div>
             <div class="column-half flex justify-center image-container">
               <img src="images/placeholder-image-square.jpg" class="expand" id="profile-pic" alt="profile-pic">
@@ -109,6 +113,21 @@
         <ul id="list">
 
         </ul>
+      </div>
+      <div class="row hidden" id="modal">
+        <div class="overlay">
+          <div class="delete-modal">
+            <div class="row">
+              <div class="column-full flex justify-center">
+                <h5>Do you want to delete this user?</h5>
+              </div>
+              <div class="column-full flex justify-between button-container">
+                <button class="modal-button-delete" value="delete">Delete</button>
+                <button class="modal-button-cancel" value="cancel">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
