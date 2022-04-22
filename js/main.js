@@ -1,4 +1,4 @@
-/* global  */
+/* global _ */
 var profilePic = document.querySelector('#profile-pic');
 var mobileH3 = document.querySelector('#mobileH3');
 var desktopH3 = document.querySelector('#desktopH3');
@@ -22,12 +22,12 @@ var playerList = document.querySelector('ul');
 var viewListButton = document.querySelector('#view-list-button');
 var addButtonListView = document.querySelector('#add-button-list-view');
 var noPlayers = document.querySelector('#no-players');
-// var sortDropdown = document.querySelector('#sort');
+var sortDropdown = document.querySelector('#sort');
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
 addButtonListView.addEventListener('click', addButtonListViewClick);
 viewListButton.addEventListener('click', viewSwapList);
-// sortDropdown.addEventListener('input', sortList);
+sortDropdown.addEventListener('input', sortList);
 window.addEventListener('DOMContentLoaded', onPageLoad);
 
 function onPageLoad(event) {
@@ -306,16 +306,18 @@ function makeList(objects) {
   }
 }
 
-/*
 function sortList(event) {
-  console.log('event target', event.target.value);
-  data.sortedBlitz = _.orderBy(array, ['currentBlitz'], ['desc']);
-  data.sortedRapid = _.orderBy(array, ['currentRapid'], ['desc']);
+  data.sortedBlitz = _.orderBy(data.entries, ['currentBlitz'], ['desc']);
+  data.sortedRapid = _.orderBy(data.entries, ['currentRapid'], ['desc']);
   if (event.target.value === 'rapid') {
-
-  }
-  else if (event.target.value === 'blitz') {
-
+    while (playerList.firstChild) {
+      playerList.removeChild(playerList.firstChild);
+    }
+    makeList(data.sortedRapid);
+  } else if (event.target.value === 'blitz') {
+    while (playerList.firstChild) {
+      playerList.removeChild(playerList.firstChild);
+    }
+    makeList(data.sortedBlitz);
   }
 }
-*/
