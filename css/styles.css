@@ -146,7 +146,6 @@ img {
 }
 
 .profile {
-  margin-top: 1.5rem;
   background-color: white;
   height: fit-content;
   width: 20rem;
@@ -216,7 +215,18 @@ h4 {
   width: 80px;
   border-radius: 4px;
   border: 1px solid #1c2c0f;
-  margin-right: 7rem;
+  margin-right: 1rem;
+}
+
+.sort-styling {
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  color: #6c757d;
+  background-color: white;
+  height: 35px;
+  width: 80px;
+  border-radius: 4px;
+  border: 1px solid #757373;
 }
 
 .players-view {
@@ -240,8 +250,7 @@ h4 {
 
 @media screen and (min-width: 768px) {
   .profile {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     max-width: 700px;
   }
 
