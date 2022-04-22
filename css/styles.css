@@ -17,6 +17,11 @@
 ul {
   padding: 0;
   flex-basis: 100%;
+  margin-top: 0;
+}
+
+.search-margin {
+  margin-top: 2rem;
 }
 
 li {
@@ -110,7 +115,6 @@ h2 {
   font-weight: 400;
   font-size: 36px;
   margin: 0;
-  margin-top: 2rem;
 }
 
 h3 {
@@ -150,6 +154,7 @@ img {
   height: fit-content;
   width: 20rem;
   border-radius: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .profile-bottom-margin {
@@ -230,7 +235,7 @@ h4 {
 }
 
 .players-view {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   max-width: 700px;
 }
 
@@ -318,7 +323,6 @@ h5 {
 
 @media screen and (min-width: 768px) {
   .profile {
-    margin-bottom: 2rem;
     max-width: 700px;
   }
 

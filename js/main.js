@@ -38,11 +38,24 @@ playerList.addEventListener('click', displayModal);
 function modalOptions(event) {
   if (event.target.textContent === 'Cancel') {
     modal.className = 'hidden';
+  } else if (event.target.textContent === 'Delete') {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].id === data.selectedId) {
+        data.entries.splice([i], 1);
+      }
+    }
+    data.selectedLi.remove();
+    modal.className = 'hidden';
   }
 }
 
 function displayModal(event) {
-  if (event.target.tagName === 'I') { modal.className = 'row'; }
+  if (event.target.tagName === 'I') {
+    var closestLi = event.target.closest('li');
+    data.selectedLi = closestLi;
+    data.selectedId = parseInt(closestLi.getAttribute('data-entry-id'));
+    modal.className = 'row';
+  }
 }
 
 function onPageLoad(event) {
