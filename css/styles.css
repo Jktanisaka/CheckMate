@@ -17,6 +17,11 @@
 ul {
   padding: 0;
   flex-basis: 100%;
+  margin-top: 0;
+}
+
+.search-margin {
+  margin-top: 2rem;
 }
 
 li {
@@ -110,7 +115,6 @@ h2 {
   font-weight: 400;
   font-size: 36px;
   margin: 0;
-  margin-top: 2rem;
 }
 
 h3 {
@@ -150,6 +154,7 @@ img {
   height: fit-content;
   width: 20rem;
   border-radius: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .profile-bottom-margin {
@@ -230,7 +235,7 @@ h4 {
 }
 
 .players-view {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   max-width: 700px;
 }
 
@@ -242,6 +247,74 @@ h4 {
   margin-top: 0;
 }
 
+h5 {
+  font-family: Rubik, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 0 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(14, 13, 13, 0.753);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.delete-modal {
+  background-color: white;
+  height: 253px;
+  width: 325px;
+  border: 1px solid white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.modal-button-delete {
+  border-radius: 4px;
+  height: 50px;
+  width: 80px;
+  color: white;
+  border: 1px solid #dc3545;
+  background-color: #dc3545;
+  margin-left: 1.5rem;
+}
+
+.modal-button-cancel {
+  border-radius: 4px;
+  height: 50px;
+  width: 80px;
+  color: white;
+  border: 1px solid #6c757d;
+  background-color: #6c757d;
+  margin-right: 1.5rem;
+}
+
+.button-container {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.delete-button {
+  color: #fe0e0e;
+  font-size: 30px;
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
   .h3-desktop {
     display: none;
@@ -250,7 +323,6 @@ h4 {
 
 @media screen and (min-width: 768px) {
   .profile {
-    margin-bottom: 2rem;
     max-width: 700px;
   }
 
@@ -290,5 +362,10 @@ h4 {
 
   .add-button {
     width: 41.3rem;
+  }
+
+  .delete-button {
+    top: 0;
+    right: 1.2rem;
   }
 }

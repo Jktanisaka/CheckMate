@@ -23,12 +23,40 @@ var viewListButton = document.querySelector('#view-list-button');
 var addButtonListView = document.querySelector('#add-button-list-view');
 var noPlayers = document.querySelector('#no-players');
 var sortDropdown = document.querySelector('#sort');
+var modal = document.querySelector('#modal');
+var buttonContainer = document.querySelector('.button-container');
+
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
 addButtonListView.addEventListener('click', addButtonListViewClick);
 viewListButton.addEventListener('click', viewSwapList);
 sortDropdown.addEventListener('input', sortList);
 window.addEventListener('DOMContentLoaded', onPageLoad);
+buttonContainer.addEventListener('click', modalOptions);
+playerList.addEventListener('click', displayModal);
+
+function modalOptions(event) {
+  if (event.target.textContent === 'Cancel') {
+    modal.className = 'hidden';
+  } else if (event.target.textContent === 'Delete') {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].id === data.selectedId) {
+        data.entries.splice([i], 1);
+      }
+    }
+    data.selectedLi.remove();
+    modal.className = 'hidden';
+  }
+}
+
+function displayModal(event) {
+  if (event.target.tagName === 'I') {
+    var closestLi = event.target.closest('li');
+    data.selectedLi = closestLi;
+    data.selectedId = parseInt(closestLi.getAttribute('data-entry-id'));
+    modal.className = 'row';
+  }
+}
 
 function onPageLoad(event) {
   makeList(data.entries);
@@ -147,11 +175,13 @@ function createListEntry(object) {
   var profileDiv = document.createElement('div');
   profileDiv.setAttribute('class', 'row profile-styling');
   var mobileDiv = document.createElement('div');
-  mobileDiv.setAttribute('class', 'column-full flex justify-center');
+  mobileDiv.setAttribute('class', 'column-full flex justify-center relative');
   var mobileH3 = document.createElement('h3');
   mobileH3.setAttribute('class', 'h3-mobile');
+  var deleteI = document.createElement('i');
+  deleteI.setAttribute('class', 'fas fa-window-close delete-button');
   mobileH3.textContent = object.name;
-  mobileDiv.appendChild(mobileH3);
+  mobileDiv.append(mobileH3, deleteI);
 
   var imageDiv = document.createElement('div');
   imageDiv.setAttribute('class', 'column-half flex justify-center image-container');
