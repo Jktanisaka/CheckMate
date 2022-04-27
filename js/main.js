@@ -25,6 +25,8 @@ var noPlayers = document.querySelector('#no-players');
 var sortDropdown = document.querySelector('#sort');
 var modal = document.querySelector('#modal');
 var buttonContainer = document.querySelector('.button-container');
+var loading = document.querySelector('#loading');
+var notFound = document.querySelector('#not-found');
 
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
@@ -77,9 +79,9 @@ function addButtonListViewClick(event) {
 
 function playerSearch(event) {
   event.preventDefault();
+  loading.className = 'row justify-center';
   getChessData(searchBox.value);
   searchBox.value = '';
-  viewSwap('profile');
 }
 
 function getChessData(name) {
@@ -88,6 +90,12 @@ function getChessData(name) {
   xhr.open('GET', 'https://api.chess.com/pub/player/' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    if (xhr.response.code === 0) {
+      notFound.className = 'error-message-styling';
+      loading.className = 'hidden';
+    } else {
+      notFound.className = 'hidden';
+    }
     if (!xhr.response.name) {
       newEntry.name = xhr.response.username;
     } else {
@@ -137,6 +145,8 @@ function getChessData(name) {
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
     newEntry.id = data.nextEntryId;
+    loading.className = 'hidden';
+    viewSwap('profile');
 
   });
   hr.send();
@@ -206,7 +216,7 @@ function createListEntry(object) {
   mobileDiv.append(mobileH3, deleteI);
 
   var imageDiv = document.createElement('div');
-  imageDiv.setAttribute('class', 'column-half flex justify-center image-container');
+  imageDiv.setAttribute('class', 'column-half flex justify-right image-container');
   var profileImg = document.createElement('img');
   profileImg.setAttribute('src', object.img);
   profileImg.setAttribute('class', 'expand');
