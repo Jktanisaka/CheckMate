@@ -2,14 +2,14 @@
   display: none !important;
 }
 
-body {
-  height: 100vh;
-}
-
 .container {
   max-width: 550px;
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+body {
+  height: 100vh;
 }
 
 .row {
