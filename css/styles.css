@@ -347,6 +347,15 @@ img {
   right: 1rem;
 }
 
+/* Refresh */
+.refresh-button {
+  position: absolute;
+  top: 3.2rem;
+  right: 1.1rem;
+  font-size: 1.8rem;
+  color: #49d61e;
+}
+
 /* Loading */
 
 .lds-grid {
@@ -483,5 +492,10 @@ img {
   .delete-button {
     top: 0;
     right: 1.2rem;
+  }
+
+  .refresh-button {
+    top: 2.5rem;
+    right: 1.25rem;
   }
 }

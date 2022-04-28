@@ -52,11 +52,22 @@ function modalOptions(event) {
 }
 
 function displayModal(event) {
-  if (event.target.tagName === 'I') {
-    var closestLi = event.target.closest('li');
-    data.selectedLi = closestLi;
-    data.selectedId = parseInt(closestLi.getAttribute('data-entry-id'));
+  var closestLi = event.target.closest('li');
+  data.selectedLi = closestLi;
+  data.selectedId = parseInt(closestLi.getAttribute('data-entry-id'));
+  if (event.target.getAttribute('class') === 'fas fa-window-close delete-button') {
     modal.className = 'row';
+  } else if (event.target.getAttribute('class') === 'fas fa-redo-alt refresh-button') {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].id === data.selectedId) {
+        var update = getChessData(data.entries[i].name);
+        data.entries.splice([i], 1, update);
+        while (playerList.firstChild) {
+          playerList.removeChild(playerList.firstChild);
+        }
+        makeList(data.entries);
+      }
+    }
   }
 }
 
@@ -212,8 +223,10 @@ function createListEntry(object) {
   mobileH3.setAttribute('class', 'h3-mobile');
   var deleteI = document.createElement('i');
   deleteI.setAttribute('class', 'fas fa-window-close delete-button');
+  var refreshI = document.createElement('i');
+  refreshI.setAttribute('class', 'fas fa-redo-alt refresh-button');
   mobileH3.textContent = object.name;
-  mobileDiv.append(mobileH3, deleteI);
+  mobileDiv.append(mobileH3, deleteI, refreshI);
 
   var imageDiv = document.createElement('div');
   imageDiv.setAttribute('class', 'column-half flex justify-right image-container');
