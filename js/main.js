@@ -27,6 +27,7 @@ var modal = document.querySelector('#modal');
 var buttonContainer = document.querySelector('.button-container');
 var loading = document.querySelector('#loading');
 var notFound = document.querySelector('#not-found');
+var logo = document.querySelector('.logo');
 
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
@@ -36,6 +37,7 @@ sortDropdown.addEventListener('input', sortList);
 window.addEventListener('DOMContentLoaded', onPageLoad);
 buttonContainer.addEventListener('click', modalOptions);
 playerList.addEventListener('click', displayModal);
+logo.addEventListener('click', addButtonListViewClick);
 
 function modalOptions(event) {
   if (event.target.textContent === 'Cancel') {
@@ -60,7 +62,7 @@ function displayModal(event) {
   } else if (event.target.getAttribute('class') === 'fas fa-redo-alt refresh-button') {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].id === data.selectedId) {
-        var update = getChessData(data.entries[i].name);
+        var update = getChessData(data.entries[i].userName);
         data.entries.splice([i], 1, update);
         while (playerList.firstChild) {
           playerList.removeChild(playerList.firstChild);
@@ -93,6 +95,7 @@ function playerSearch(event) {
   loading.className = 'row justify-center';
   getChessData(searchBox.value);
   searchBox.value = '';
+  viewSwap('profile');
 }
 
 function getChessData(name) {
@@ -124,6 +127,7 @@ function getChessData(name) {
     }
     var newDate = new Date(xhr.response.last_online * 1000);
     newEntry.lastTimeOnline = newDate.toString();
+    newEntry.userName = xhr.response.username;
     mobileH3.textContent = newEntry.name;
     desktopH3.textContent = newEntry.name;
     locationEntry.textContent = newEntry.location;
@@ -157,7 +161,6 @@ function getChessData(name) {
     blitzDraws.textContent = newEntry.blitzDraws;
     newEntry.id = data.nextEntryId;
     loading.className = 'hidden';
-    viewSwap('profile');
 
   });
   hr.send();
