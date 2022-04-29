@@ -96,6 +96,7 @@ function serverErrorFunction() {
 }
 
 function getChessData(name) {
+  data.searchedEntry = '';
   setTimeout(serverErrorFunction, 3000);
   var newEntry = {};
   var xhr = new XMLHttpRequest();
