@@ -347,15 +347,6 @@ img {
   right: 1rem;
 }
 
-/* Refresh */
-.refresh-button {
-  position: absolute;
-  top: 3.2rem;
-  right: 1.1rem;
-  font-size: 1.8rem;
-  color: #49d61e;
-}
-
 /* Loading */
 
 .lds-grid {

@@ -29,6 +29,7 @@ var loading = document.querySelector('#loading');
 var notFound = document.querySelector('#not-found');
 var serverError = document.querySelector('#timeout');
 var logo = document.querySelector('.logo');
+var stopTimeout;
 
 logo.addEventListener('click', addButtonListViewClick);
 formSearch.addEventListener('submit', playerSearch);
@@ -77,7 +78,12 @@ function viewSwapList(event) {
 }
 
 function addButtonListViewClick(event) {
+  clearTimeoutFunction();
   viewSwap('search');
+}
+
+function clearTimeoutFunction() {
+  clearTimeout(stopTimeout);
 }
 
 function playerSearch(event) {
@@ -97,7 +103,7 @@ function serverErrorFunction() {
 
 function getChessData(name) {
   data.searchedEntry = '';
-  setTimeout(serverErrorFunction, 3000);
+  stopTimeout = setTimeout(serverErrorFunction, 2000);
   var newEntry = {};
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.chess.com/pub/player/' + name);
@@ -172,6 +178,7 @@ function viewSwap(view) {
   for (var i = 0; i < viewList.length; i++) {
     if (viewList[i].getAttribute('data-view') !== view) {
       viewList[i].className = 'row justify-center hidden data-view';
+      serverError.className = 'hidden';
     } else {
       viewList[i].className = 'row justify-center data-view';
     }
