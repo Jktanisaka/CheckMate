@@ -84,7 +84,7 @@
 }
 
 /* main */
-
+h1,
 button,
 i {
   cursor: pointer;
@@ -483,5 +483,10 @@ img {
   .delete-button {
     top: 0;
     right: 1.2rem;
+  }
+
+  .refresh-button {
+    top: 2.5rem;
+    right: 1.25rem;
   }
 }

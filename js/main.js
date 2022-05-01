@@ -27,7 +27,10 @@ var modal = document.querySelector('#modal');
 var buttonContainer = document.querySelector('.button-container');
 var loading = document.querySelector('#loading');
 var notFound = document.querySelector('#not-found');
+var serverError = document.querySelector('#timeout');
+var logo = document.querySelector('.logo');
 
+logo.addEventListener('click', addButtonListViewClick);
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
 addButtonListView.addEventListener('click', addButtonListViewClick);
@@ -36,6 +39,7 @@ sortDropdown.addEventListener('input', sortList);
 window.addEventListener('DOMContentLoaded', onPageLoad);
 buttonContainer.addEventListener('click', modalOptions);
 playerList.addEventListener('click', displayModal);
+window.addEventListener('error', serverErrorFunction);
 
 function modalOptions(event) {
   if (event.target.textContent === 'Cancel') {
@@ -45,6 +49,9 @@ function modalOptions(event) {
       if (data.entries[i].id === data.selectedId) {
         data.entries.splice([i], 1);
       }
+    }
+    if (!data.entries[0]) {
+      noPlayers.className = 'column-full no-players-styling';
     }
     data.selectedLi.remove();
     modal.className = 'hidden';
@@ -79,12 +86,21 @@ function addButtonListViewClick(event) {
 
 function playerSearch(event) {
   event.preventDefault();
+  serverError.className = 'hidden';
   loading.className = 'row justify-center';
   getChessData(searchBox.value);
   searchBox.value = '';
 }
 
+function serverErrorFunction() {
+  loading.className = 'hidden';
+  if (notFound.getAttribute('class') === 'error-message-styling hidden' || notFound.getAttribute('class') === 'hidden') {
+    serverError.className = 'error-message-styling';
+  }
+}
+
 function getChessData(name) {
+  data.searchedEntry = '';
   var newEntry = {};
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.chess.com/pub/player/' + name);
@@ -159,6 +175,7 @@ function viewSwap(view) {
   for (var i = 0; i < viewList.length; i++) {
     if (viewList[i].getAttribute('data-view') !== view) {
       viewList[i].className = 'row justify-center hidden data-view';
+      serverError.className = 'hidden';
     } else {
       viewList[i].className = 'row justify-center data-view';
     }
