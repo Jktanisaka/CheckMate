@@ -140,16 +140,20 @@ function getChessData(name) {
   hr.open('GET', 'https://api.chess.com/pub/player/' + name + '/stats');
   hr.responseType = 'json';
   hr.addEventListener('load', function () {
-    newEntry.bestBlitz = hr.response.chess_blitz.best.rating;
-    newEntry.currentBlitz = hr.response.chess_blitz.last.rating;
-    newEntry.blitzWins = hr.response.chess_blitz.record.win;
-    newEntry.blitzLosses = hr.response.chess_blitz.record.loss;
-    newEntry.blitzDraws = hr.response.chess_blitz.record.draw;
-    newEntry.bestRapid = hr.response.chess_rapid.best.rating;
-    newEntry.currentRapid = hr.response.chess_rapid.last.rating;
-    newEntry.rapidWins = hr.response.chess_rapid.record.win;
-    newEntry.rapidLosses = hr.response.chess_rapid.record.loss;
-    newEntry.rapidDraws = hr.response.chess_rapid.record.draw;
+    if (hr.response.chess_blitz) {
+      newEntry.bestBlitz = hr.response.chess_blitz.best.rating;
+      newEntry.currentBlitz = hr.response.chess_blitz.last.rating;
+      newEntry.blitzWins = hr.response.chess_blitz.record.win;
+      newEntry.blitzLosses = hr.response.chess_blitz.record.loss;
+      newEntry.blitzDraws = hr.response.chess_blitz.record.draw;
+    }
+    if (hr.response.chess_rapid) {
+      newEntry.bestRapid = hr.response.chess_rapid.best.rating;
+      newEntry.currentRapid = hr.response.chess_rapid.last.rating;
+      newEntry.rapidWins = hr.response.chess_rapid.record.win;
+      newEntry.rapidLosses = hr.response.chess_rapid.record.loss;
+      newEntry.rapidDraws = hr.response.chess_rapid.record.draw;
+    }
     rapidBest.textContent = newEntry.bestRapid;
     rapidCurrent.textContent = newEntry.currentRapid;
     rapidWins.textContent = newEntry.rapidWins;
@@ -160,6 +164,22 @@ function getChessData(name) {
     blitzWins.textContent = newEntry.blitzWins;
     blitzLosses.textContent = newEntry.blitzLosses;
     blitzDraws.textContent = newEntry.blitzDraws;
+    if (!hr.response.chess_rapid) {
+      const notFound = 'N/A';
+      rapidBest.textContent = notFound;
+      rapidCurrent.textContent = notFound;
+      rapidWins.textContent = notFound;
+      rapidLosses.textContent = notFound;
+      rapidDraws.textContent = notFound;
+    }
+    if (!hr.response.chess_blitz) {
+      const notFound = 'N/A';
+      blitzBest.textContent = notFound;
+      blitzCurrent.textContent = notFound;
+      blitzWins.textContent = notFound;
+      blitzLosses.textContent = notFound;
+      blitzDraws.textContent = notFound;
+    }
     newEntry.id = data.nextEntryId;
     loading.className = 'hidden';
     viewSwap('profile');
