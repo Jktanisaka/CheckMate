@@ -31,7 +31,6 @@ const serverError = document.querySelector('#timeout');
 const logo = document.querySelector('.logo');
 const imageElement = document.querySelector('.imageElement');
 
-
 logo.addEventListener('click', addButtonListViewClick);
 formSearch.addEventListener('submit', playerSearch);
 addButton.addEventListener('click', addEntry);
