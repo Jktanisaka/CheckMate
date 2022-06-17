@@ -29,6 +29,8 @@ const loading = document.querySelector('#loading');
 const notFound = document.querySelector('#not-found');
 const serverError = document.querySelector('#timeout');
 const logo = document.querySelector('.logo');
+const imageElement = document.querySelector('.imageElement');
+
 
 logo.addEventListener('click', addButtonListViewClick);
 formSearch.addEventListener('submit', playerSearch);
@@ -40,6 +42,7 @@ window.addEventListener('DOMContentLoaded', onPageLoad);
 buttonContainer.addEventListener('click', modalOptions);
 playerList.addEventListener('click', displayModal);
 window.addEventListener('error', serverErrorFunction);
+imageElement.addEventListener('error', () => imageElement.setAttribute('src', 'images/placeholder-image-square.jpg'));
 
 function modalOptions(event) {
   if (event.target.textContent === 'Cancel') {
@@ -257,6 +260,7 @@ function createListEntry(object) {
   const profileImg = document.createElement('img');
   profileImg.setAttribute('src', object.img);
   profileImg.setAttribute('class', 'expand');
+  profileImg.setAttribute('class', 'imageElement');
   imageDiv.appendChild(profileImg);
 
   const infoDiv = document.createElement('div');
